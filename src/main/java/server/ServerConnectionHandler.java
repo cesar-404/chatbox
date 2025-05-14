@@ -30,6 +30,11 @@ public class ServerConnectionHandler implements Runnable {
         }
     }
 
+    private void initializeStreams() throws IOException {
+        this.inputReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        this.outputWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+    }
+
     @Override
     public void run() {
 
