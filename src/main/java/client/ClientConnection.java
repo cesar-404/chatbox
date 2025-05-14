@@ -15,6 +15,7 @@ public class ClientConnection {
     private final BufferedWriter outputWriter;
     private final String username;
     private final Scanner scanner;
+    private volatile boolean isClosed = false;
 
     public ClientConnection(Socket socket, String username) throws IOException {
         this.socket = socket;
@@ -60,7 +61,7 @@ public class ClientConnection {
                     System.out.println(messageFromServer);
                 }
             } catch (IOException e) {
-                logger.log(Level.INFO, "Disconnected from server", e);
+                logger.log(Level.FINE, "Connection closed by server.", e);
                 closeConnection();
             }
         });
@@ -69,7 +70,10 @@ public class ClientConnection {
         listenerThread.start();
     }
 
-    private void closeConnection() {
+    private synchronized void closeConnection() {
+        if (isClosed) return;
+        isClosed = true;
+
         try {
             if (!socket.isClosed()) socket.close();
             if (inputReader != null) inputReader.close();
