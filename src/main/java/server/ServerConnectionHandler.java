@@ -100,6 +100,7 @@ public class ServerConnectionHandler implements Runnable {
             logger.log(Level.INFO, "Connection lost with " + clientUsername, e);
         } finally {
             closeConnection();
+            logger.info("Client " + clientUsername + " has disconnected.");
         }
     }
 }
