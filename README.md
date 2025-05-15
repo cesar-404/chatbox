@@ -18,6 +18,7 @@ Busquei explorar conceitos fundamentais como gerenciamento de conexões, concorr
 - **Java Threads** – Para tratar múltiplos clientes simultaneamente.
 - **Logger (`java.util.logging`)** – Para registro de eventos e depuração.
 - **Collections (`CopyOnWriteArrayList`)** – Para lidar com concorrência entre múltiplos clientes conectados.
+- **JUnit5 e Mockito** - Para testes unitários.
 
 ---
 
